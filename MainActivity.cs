@@ -22,9 +22,43 @@ namespace TestDb
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+            //Button button = FindViewById<Button>(Resource.Id.MyButton);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            //button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            
+            
+            Button Insert = FindViewById<Button>(Resource.Id.InsertButton);
+            EditText Name = FindViewById<EditText>(Resource.Id.TextBox);
+
+            Insert.Click += (object sender, EventArgs e) =>
+            {
+                // Translate user's alphanumeric phone number to numeric
+                //DataManagerHelper DataBaseManager = new DataManagerHelper(this)
+                //{
+
+                //    //DataBaseManager.OnCreate();
+                //    base.OnCreate();
+                //};
+                
+                
+
+                Customer var = new Customer();
+
+                var.FirstName = Name.Text;
+                var.LastName = Name.Text;
+
+                //Working code
+                DatabaseUpdates ManageDb = new DatabaseUpdates();
+                ManageDb.SetContext(this);
+
+                DatabaseUpdates upd = new DatabaseUpdates();
+
+                upd.UpdateCustomer(var);
+                Name.Text = "";
+
+               
+            };
+
         }
     }
 }
